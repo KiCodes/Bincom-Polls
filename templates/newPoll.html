@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block body %}
+Add New Polling Unit
+
+    <h3 style="color: red"> {{ message }} </h3>
+
+    <form action="{{ url_for('new_poll') }}" method="post">
+        Name: <input type="text", name="poll_name" placeholder="Name of Poll" value="{{ poll_name }}"><br>
+        Description: <input type="text", name="poll_description" placeholder="Polling Unit Description " value="{{ poll_description }}"><br>
+        Polling Unit ID: <input type="number", name="poll_id" placeholder="Polling Unit ID" min="1" value="{{ poll_id }}"><br>
+        WARD ID: <input type="number", name="ward_id" placeholder="WARD ID" min="1" value="{{ ward_id }}"><br>
+        WARD (UNIQUE ID):
+        <select name="ward_unique_id">
+        {% for ward in wards %}
+        <option value="{{ ward[0] }}">
+           {{ ward[1] }}
+        </option>
+        {% endfor %}
+        </select><br>
+        LGA: <select name="lga_id">
+        {% for lga in lgas %}
+        <option value="{{ lga[0] }}">
+           {{ lga[1] }}
+        </option>
+        {% endfor %}
+    </select><br>
+        polling unit number: <input type="text", name="polling_unit_number" placeholder="DTXXXXX" value="{{ polling_unit_number }}">
+
+    <button type="submit" >Submit</button>
+
+    </form>
+
+{% endblock %}

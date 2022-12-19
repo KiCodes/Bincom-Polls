@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<p>
+  AVAILABLE POLLING UNIT RESULTS:
+<form action="{{ url_for('pu_results') }}" method="post" >
+
+    <select id="pu_id" name="pu_id">
+        {% for pu in pus %}
+        <option value="{{ pu[0] }}">
+            {{ pu[1] }}
+        </option>
+        {% endfor %}
+
+    </select>
+    <button type="submit" > Go</button>
+
+</form>
+
+{% for pu in pu_heads %}
+<h2> RESULT FOR PU:  {{ pu[0] }} </h2>
+{% endfor %}
+
+</p>
+
+<div >
+    {% for result in results %}
+
+    <h2>{{ result[1] }}: {{ result[2] }}</h2>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

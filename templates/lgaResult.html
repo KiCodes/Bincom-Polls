@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+    ANNOUNCED LGA RESULTS:
+<form action="{{ url_for('lga_results') }}" method="post" >
+    <select name="lga_id">
+        {% for lga in lgas %}
+        <option value="{{ lga[0] }}">
+           {{ lga[1] }}
+        </option>
+        {% endfor %}
+    </select>
+    <button type="submit" > Go</button>
+</form>
+
+<div >
+    {% for pu in pu_heads %}
+<h2> RESULT FOR LGA:  {{ pu[0] }} </h2>
+    {% endfor %}
+
+    {% for lgaf in lga_fin %}
+        {% if lgaf %}
+    <h2>{{ lgaf[0] }}: {{ lgaf[1] }} </h2>
+        {% elif lgaf == None %}
+    <h2>{{ message }} </h2>
+        {% endif %}
+    {% endfor %}
+
+</div>
+{% endblock %}

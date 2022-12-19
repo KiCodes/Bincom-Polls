@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<h3> {{ message }} </h3>
+
+<form action="{{ url_for('submit_poll_results') }}" method="post">
+    <h2>ADD POLLING UNIT RESULTS FOR YOUR POLLING UNIT</h2>
+        Polling Unit:
+
+        <select name="poll_uniqueid">
+            {% for poll in polls %}
+            <option value="{{ poll[0] }}">{{ poll[1] }}</option>
+            {% endfor %}
+        </select><br>
+
+        PDP: <input class="form-control" type="number", name="PDP"><br>
+        DDP: <input class="form-control" type="number", name="DPP"><br>
+        ACN: <input class="form-control" type="number", name="ACN"><br>
+        CDC: <input class="form-control" type="number", name="CDC"><br>
+        JP: <input class="form-control" type="number", name="JP"><br>
+
+        ENTERED BY: <input type="text", name="entered_by"><br>
+
+
+
+    <button type="submit" >Submit</button>
+
+    </form >
+
+
+{% endblock %}}
